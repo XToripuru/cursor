@@ -1,5 +1,5 @@
 # Cursor
-## a chat application showcase
+a chat application showcase
 
 ## Technologies
 * React
