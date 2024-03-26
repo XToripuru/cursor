@@ -34,8 +34,6 @@ async function init_db() {
 app.use(express.static(path.join(__dirname, '..', 'dist')));
 
 app.get('/', (req, res) => {
-    console.log("connected");
-
     res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'));
 });
 
@@ -51,7 +49,6 @@ wss.on('connection', async (ws) => {
     let uid = id;
 
     ws.on('message', async (data) => {
-        console.log("received: %s", data);
 
         let message = JSON.parse(data);
 
@@ -66,7 +63,8 @@ wss.on('connection', async (ws) => {
         }
         
         const max_id = await db.query("math::max(SELECT VALUE mid from M)");
-        message["mid"] = parseInt(max_id) + 1;
+        const next_id = (parseInt(max_id) + 1) || 0;
+        message["mid"] = next_id;
 
         users.forEach(user => user.ws.send(JSON.stringify([message])));
 
