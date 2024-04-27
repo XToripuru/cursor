@@ -1,8 +1,9 @@
 # Cursor
-A chat application [showcase](https://youtu.be/l9avC_1Uwrg).
+A simple chat application with one global chat room. [Showcase](https://youtu.be/l9avC_1Uwrg).
 
 ## Technologies
 * React
 * Vite
 * Node.js
 * SurrealDB
+* Websockets
